@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="dogxi 的个人小站合集 —— 以 i 为代号的系列小工具" />
+  <meta property="og:title" content="iWeb" />
+  <meta property="og:description" content="dogxi 的个人小站合集" />
+  <meta property="og:type" content="website" />
+  <title>iWeb</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ── Design Tokens ── */
+    :root {
+      --bg:          #f9f9f8;
+      --surface:     #ffffff;
+      --border:      #e8e8e5;
+      --text-primary:#1a1a18;
+      --text-muted:  #888880;
+      --accent:      #1a1a18;
+      --accent-soft: #f0f0ee;
+      --radius:      10px;
+      --transition:  160ms ease;
+
+      --font-sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+                   system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   sans-serif;
+      --font-mono: "SF Mono", "Fira Code", "Cascadia Code", ui-monospace,
+                   monospace;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:          #111110;
+        --surface:     #1c1c1a;
+        --border:      #2e2e2b;
+        --text-primary:#f0f0ed;
+        --text-muted:  #6b6b66;
+        --accent:      #f0f0ed;
+        --accent-soft: #242422;
+      }
+    }
+
+    /* ── Layout ── */
+    html {
+      height: 100%;
+    }
+
+    body {
+      min-height: 100%;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4rem 1.25rem 3rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      flex: 1;
+    }
+
+    /* ── Header ── */
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .site-name {
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.15em;
+    }
+
+    .site-name .prefix {
+      color: var(--text-muted);
+    }
+
+    .site-tagline {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* ── Project List ── */
+    .project-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .project-item a {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding: 1rem 1.125rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: inherit;
+      transition:
+        border-color var(--transition),
+        background-color var(--transition),
+        transform var(--transition);
+      will-change: transform;
+    }
+
+    .project-item a:hover {
+      border-color: var(--text-muted);
+      background-color: var(--accent-soft);
+      transform: translateY(-1px);
+    }
+
+    .project-item a:active {
+      transform: translateY(0);
+    }
+
+    .project-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+    }
+
+    .project-name {
+      font-family: var(--font-mono);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .project-domain {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      white-space: nowrap;
+    }
+
+    .project-desc {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── Footer ── */
+    footer {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color var(--transition), border-color var(--transition);
+    }
+
+    footer a:hover {
+      color: var(--text-primary);
+      border-color: var(--text-primary);
+    }
+
+    /* ── Focus styles (accessibility) ── */
+    a:focus-visible {
+      outline: 2px solid var(--text-primary);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .project-item a {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <p class="site-name">
+        <span class="prefix">i</span>Web
+      </p>
+      <p class="site-tagline">dogxi 的个人小站合集</p>
+    </header>
+
+    <main>
+      <ul class="project-list" aria-label="项目列表">
+
+        <li class="project-item">
+          <a href="https://resume.dogxi.me" target="_blank" rel="noopener noreferrer">
+            <div class="project-header">
+              <span class="project-name">iResume</span>
+              <span class="project-domain">resume.dogxi.me</span>
+            </div>
+            <p class="project-desc">个人简历 PDF 生成</p>
+          </a>
+        </li>
+
+        <li class="project-item">
+          <a href="https://nav.dogxi.me" target="_blank" rel="noopener noreferrer">
+            <div class="project-header">
+              <span class="project-name">iNavi</span>
+              <span class="project-domain">nav.dogxi.me</span>
+            </div>
+            <p class="project-desc">个人导航站</p>
+          </a>
+        </li>
+
+        <li class="project-item">
+          <a href="https://card.dogxi.me" target="_blank" rel="noopener noreferrer">
+            <div class="project-header">
+              <span class="project-name">iCard</span>
+              <span class="project-domain">card.dogxi.me</span>
+            </div>
+            <p class="project-desc">个人状态卡片生成</p>
+          </a>
+        </li>
+
+      </ul>
+    </main>
+
+    <footer>
+      <span>by</span>
+      <a href="https://github.com/dogxii" target="_blank" rel="noopener noreferrer">dogxi</a>
+    </footer>
+
+  </div>
+</body>
+</html>
