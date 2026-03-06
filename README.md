@@ -9,5 +9,6 @@ https://i.dogxi.me
 ## 列表
 
 - [iResume](https://resume.dogxi.me): 个人简历 pdf 生成
-- [iNavi](https://nav.dogxi.me): 个人导航站
-- [iCard](https://card.dogxi.me): 个人状态卡片生成
+- [iNav](https://nav.dogxi.me): 个人导航站
+- [iCover](https://cover.dogxi.me): 亮/暗色拼接图生成
+- [iSticker](https://sticker.dogxi.me): 贴纸拼板生成，打印贴纸周边

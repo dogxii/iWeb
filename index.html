@@ -48,9 +48,7 @@
     }
 
     /* ── Layout ── */
-    html {
-      height: 100%;
-    }
+    html { height: 100%; }
 
     body {
       min-height: 100%;
@@ -94,9 +92,7 @@
       gap: 0.15em;
     }
 
-    .site-name .prefix {
-      color: var(--text-muted);
-    }
+    .site-name .prefix { color: var(--text-muted); }
 
     .site-tagline {
       font-size: 0.875rem;
@@ -135,9 +131,7 @@
       transform: translateY(-1px);
     }
 
-    .project-item a:active {
-      transform: translateY(0);
-    }
+    .project-item a:active { transform: translateY(0); }
 
     .project-header {
       display: flex;
@@ -153,11 +147,24 @@
       letter-spacing: -0.01em;
     }
 
+    .project-badge {
+      font-size: 0.6875rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.05em 0.45em;
+      line-height: 1.6;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
     .project-domain {
       font-size: 0.75rem;
       color: var(--text-muted);
       font-family: var(--font-mono);
       white-space: nowrap;
+      margin-left: auto;
     }
 
     .project-desc {
@@ -196,9 +203,7 @@
 
     /* ── Reduced motion ── */
     @media (prefers-reduced-motion: reduce) {
-      .project-item a {
-        transition: none;
-      }
+      .project-item a { transition: none; }
     }
   </style>
 </head>
@@ -213,39 +218,7 @@
     </header>
 
     <main>
-      <ul class="project-list" aria-label="项目列表">
-
-        <li class="project-item">
-          <a href="https://resume.dogxi.me" target="_blank" rel="noopener noreferrer">
-            <div class="project-header">
-              <span class="project-name">iResume</span>
-              <span class="project-domain">resume.dogxi.me</span>
-            </div>
-            <p class="project-desc">个人简历 PDF 生成</p>
-          </a>
-        </li>
-
-        <li class="project-item">
-          <a href="https://nav.dogxi.me" target="_blank" rel="noopener noreferrer">
-            <div class="project-header">
-              <span class="project-name">iNavi (施工中)</span>
-              <span class="project-domain">nav.dogxi.me</span>
-            </div>
-            <p class="project-desc">个人导航站</p>
-          </a>
-        </li>
-
-        <li class="project-item">
-          <a href="https://card.dogxi.me" target="_blank" rel="noopener noreferrer">
-            <div class="project-header">
-              <span class="project-name">iCard (施工中)</span>
-              <span class="project-domain">card.dogxi.me</span>
-            </div>
-            <p class="project-desc">个人状态卡片生成</p>
-          </a>
-        </li>
-
-      </ul>
+      <ul class="project-list" id="project-list" aria-label="项目列表"></ul>
     </main>
 
     <footer>
@@ -254,5 +227,65 @@
     </footer>
 
   </div>
+
+  <script>
+    // ──────────────────────────────────────────────
+    // 在这里维护导航列表，新增一个条目只需往数组里加一行
+    //
+    // 字段说明：
+    //   name   — 显示名称（必填）
+    //   url    — 跳转链接（必填）
+    //   desc   — 一句话描述（必填）
+    //   badge  — 状态标签，例如 "施工中" "beta" "new"（可选，不填则不显示）
+    // ──────────────────────────────────────────────
+    const PROJECTS = [
+      {
+        name:  "iResume",
+        url:   "https://resume.dogxi.me",
+        desc:  "个人简历 PDF 生成",
+      },
+      {
+        name:  "iNav",
+        url:   "https://nav.dogxi.me",
+        desc:  "个人导航站",
+        // badge: "施工中",
+      },
+      {
+        name:  "iCover",
+        url:   "https://cover.dogxi.me",
+        desc:  "亮/暗色拼接图生成",
+      },
+      {
+        name:  "iSticker",
+        url:   "https://sticker.dogxi.me",
+        desc:  "贴纸拼板生成，打印贴纸周边",
+      },
+    ];
+    // ──────────────────────────────────────────────
+
+    (function render() {
+      const list = document.getElementById("project-list");
+
+      PROJECTS.forEach(({ name, url, desc, badge }) => {
+        const domain = url.replace(/^https?:\/\//, "");
+
+        const li = document.createElement("li");
+        li.className = "project-item";
+
+        li.innerHTML = `
+          <a href="${url}" target="_blank" rel="noopener noreferrer">
+            <div class="project-header">
+              <span class="project-name">${name}</span>
+              ${badge ? `<span class="project-badge">${badge}</span>` : ""}
+              <span class="project-domain">${domain}</span>
+            </div>
+            <p class="project-desc">${desc}</p>
+          </a>
+        `;
+
+        list.appendChild(li);
+      });
+    })();
+  </script>
 </body>
 </html>
