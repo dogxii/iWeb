@@ -12,3 +12,4 @@ https://i.dogxi.me
 - [iNav](https://nav.dogxi.me): 个人导航站
 - [iCover](https://cover.dogxi.me): 亮/暗色拼接图生成
 - [iSticker](https://sticker.dogxi.me): 贴纸拼板生成，打印贴纸周边
+- [iFace](https://face.dogxi.me): AI Agent 前端面试刷题
